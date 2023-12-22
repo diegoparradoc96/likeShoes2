@@ -17,7 +17,7 @@ interface NormalHeaderProps {
 
 const NormalHeader: React.FC<NormalHeaderProps> = ({}) => {
   return (
-    <Navbar>
+    <Navbar className="absolute">
       <NavbarBrand>
         <p className="font-bold text-inherit">LikeShoes</p>
       </NavbarBrand>

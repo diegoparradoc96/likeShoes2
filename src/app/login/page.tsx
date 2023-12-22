@@ -19,10 +19,10 @@ const Login: React.FC = () => {
   };
 
   return (
-    <>
+    <div>
       <NormalHeader />
       <div className="flex h-screen justify-center items-center">
-        <section className="flex flex-col justify-center space-y-10 p-10 sm:w-2/4 h-3/4 md:w-1/4 h-3/4">
+        <section className="sm:w-80 md:w-80 h-3/4 flex flex-col justify-center space-y-10 p-10 h-3/4">
           <div>
             <div className="mb-2">
               <NormalInput
@@ -43,7 +43,7 @@ const Login: React.FC = () => {
             </div>
 
             <div className="mt-5">
-              <NormalButton text="Iniciar sesion" />
+              <NormalButton text="Iniciar sesion" textColor="textSecondary" />
             </div>
           </div>
 
@@ -51,13 +51,13 @@ const Login: React.FC = () => {
             <p className="mb-3 font-bold">
               ¿Aún no tienes cuenta en LikeShoes?
             </p>
-            <Link href={"/register"} className="textSecondary font-medium">
+            <Link href={"/register"} className="textPrimary font-medium">
               Crea tu cuenta
             </Link>
           </div>
         </section>
       </div>
-    </>
+    </div>
   );
 };
 
