@@ -16,6 +16,7 @@ const Register: React.FC = () => {
     email: "",
     fullName: "",
     password: "",
+    repeatPassword: "",
   });
 
   const handleInputChanges = (input: string, value: string) => {
@@ -53,15 +54,16 @@ const Register: React.FC = () => {
             <section className="border-b-2 w-28 ml-5"></section>
           </div>
 
-          <div className="mb-1">
+          <div className="mb-1 ">
             <NormalInput
               value={inputs.email}
               label="Correo electronico"
               name="email"
               handleInputChanges={handleInputChanges}
+              inputType="email"
             />
           </div>
-          <div className="mb-1">
+          <div className="mb-1 ">
             <NormalInput
               value={inputs.fullName}
               label="Nombres completos"
@@ -74,6 +76,14 @@ const Register: React.FC = () => {
               value={inputs.password}
               label="Contraseña"
               name="password"
+              handleInputChanges={handleInputChanges}
+            />
+          </div>
+          <div className="mb-1">
+            <NormalInput
+              value={inputs.repeatPassword}
+              label="Repetir contraseña"
+              name="repeatPassword"
               handleInputChanges={handleInputChanges}
             />
           </div>
