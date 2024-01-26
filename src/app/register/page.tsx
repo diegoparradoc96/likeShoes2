@@ -4,27 +4,43 @@ import React, { useState, useEffect } from "react";
 
 /* react icons */
 import { IoLogoFacebook } from "react-icons/io5";
-
-/* next */
+/* next tools*/
 import Link from "next/link";
-
+/* types */
+import { IUser, IUserRegister } from "../../common/types";
+/* queries api */
+import { userQueries } from "../../services/api_likeshoes";
 /* components */
 import { NormalInput, NormalButton } from "../../components";
 
 const Register: React.FC = () => {
   const [inputs, setInputs] = useState({
     email: "",
-    fullName: "",
     password: "",
-    repeatPassword: "",
+    repeat_password: "",
   });
 
   const handleInputChanges = (input: string, value: string) => {
     setInputs((prevState) => ({ ...prevState, [input]: value }));
   };
 
-  const createUser = () => {
-    console.log("inputs: ", inputs.email, inputs.fullName, inputs.password);
+  const toggleCreateUser = (): void => {
+    const user: IUserRegister = {
+      email: inputs.email,
+      password: inputs.password,
+    };
+
+    createUser(user);
+  };
+
+  const createUser = async (user: IUserRegister): Promise<void> => {
+    try {
+      const resCreateUser = await userQueries.register(user);
+
+      console.log("resCreateUser", resCreateUser);
+    } catch (error) {
+      console.error("el error => ", error);
+    }
   };
 
   return (
@@ -63,14 +79,6 @@ const Register: React.FC = () => {
               inputType="email"
             />
           </div>
-          <div className="mb-1 ">
-            <NormalInput
-              value={inputs.fullName}
-              label="Nombres completos"
-              name="fullName"
-              handleInputChanges={handleInputChanges}
-            />
-          </div>
           <div className="mb-1">
             <NormalInput
               value={inputs.password}
@@ -81,9 +89,9 @@ const Register: React.FC = () => {
           </div>
           <div className="mb-1">
             <NormalInput
-              value={inputs.repeatPassword}
+              value={inputs.repeat_password}
               label="Repetir contraseña"
-              name="repeatPassword"
+              name="repeat_password"
               handleInputChanges={handleInputChanges}
             />
           </div>
@@ -100,7 +108,7 @@ const Register: React.FC = () => {
               text="Registrarte"
               backgroundColor="bgTertiary"
               textColor="textSecondary"
-              onClick={createUser}
+              onClick={toggleCreateUser}
             />
           </div>
         </section>
