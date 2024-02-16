@@ -2,18 +2,15 @@ import React from "react";
 
 /* next */
 import Link from "next/link";
-
 /* nextui */
 import { Button } from "@nextui-org/react";
+/* components */
+import { Header_ } from "../components/Header_";
 
 const Home: React.FC = () => {
   return (
-    <div className="grid h-screen place-content-center">
-      <Button className="p-6">
-        <Link href={"/login"} className="text-xl font-medium">
-          Iniciar sesion
-        </Link>
-      </Button>
+    <div className="grid h-screen">
+      <Header_ />
     </div>
   );
 };

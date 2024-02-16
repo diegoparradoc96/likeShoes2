@@ -8,7 +8,7 @@ import { IUserRegister } from "../../common/types";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 /* components */
-import { NormalInput, NormalButton, NormalHeader } from "../../components";
+import { NormalInput, NormalButton, Header_ } from "../../components";
 /* queries api */
 import { userQueries } from "../../services/api_likeshoes";
 
@@ -36,7 +36,6 @@ const Login: React.FC = () => {
 
   return (
     <div>
-      <NormalHeader />
       <div className="flex h-screen justify-center items-center">
         <section className="sm:w-80 md:w-80 h-3/4 flex flex-col justify-center space-y-10 p-10 h-3/4">
           <div>
