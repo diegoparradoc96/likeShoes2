@@ -16,7 +16,7 @@ interface NormalHeaderProps {
 
 const Header_: React.FC<NormalHeaderProps> = ({}) => {
   return (
-    <Navbar className="absolute" maxWidth="xl">
+    <Navbar maxWidth="xl" position="sticky">
       <NavbarBrand className="space-x-20">
         {/* company name */}
         <p className="font-bold text-inherit text-4xl">LikeShoes</p>
