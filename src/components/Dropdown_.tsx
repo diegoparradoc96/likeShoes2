@@ -1,16 +1,21 @@
-"use client";
-
-import React, { useState } from "react";
+import React from "react";
 import {
   Dropdown,
   DropdownTrigger,
   DropdownMenu,
+  DropdownSection,
   DropdownItem,
   Button,
 } from "@nextui-org/react";
 
-const Dropdown_ = () => {
-  const [showDropdown, setShowDropdown] = useState<boolean>(false);
+import { ISelectionBarElements } from "../common/types";
+
+interface IDropdown_props {
+  selectionBarElement: ISelectionBarElements;
+}
+
+const Dropdown_: React.FC<IDropdown_props> = ({ selectionBarElement }) => {
+  const { nameButton, sections } = selectionBarElement;
 
   return (
     <Dropdown
@@ -19,15 +24,18 @@ const Dropdown_ = () => {
       disableAnimation={true}
     >
       <DropdownTrigger>
-        <Button variant="bordered">Open Menu</Button>
+        <Button variant="bordered">{nameButton}</Button>
       </DropdownTrigger>
       <DropdownMenu aria-label="Static Actions">
-        <DropdownItem key="new">New file</DropdownItem>
-        <DropdownItem key="copy">Copy link</DropdownItem>
-        <DropdownItem key="edit">Edit file</DropdownItem>
-        <DropdownItem key="delete" className="text-danger" color="danger">
-          Delete file
-        </DropdownItem>
+        {selectionBarElement.sections.map((section, index) => {
+          return (
+            <DropdownSection title="Actions">
+              {section.sectionElements.map((sectionElement, index) => {
+                return <DropdownItem>{sectionElement}</DropdownItem>;
+              })}
+            </DropdownSection>
+          );
+        })}
       </DropdownMenu>
     </Dropdown>
   );
