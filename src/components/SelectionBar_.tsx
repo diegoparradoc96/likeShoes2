@@ -10,7 +10,7 @@ import { Dropdown_ } from "../components";
 const SelectionBar_ = () => {
   const selectionBarElements: ISelectionBarElements[] = [
     {
-      nameButton: "Femenino",
+      nameButton: "Mujeres",
       sections: [
         {
           nameSection: "Tenis",
@@ -23,7 +23,7 @@ const SelectionBar_ = () => {
       ],
     },
     {
-      nameButton: "Masculino",
+      nameButton: "Hombres",
       sections: [
         {
           nameSection: "Tenis",
@@ -35,8 +35,10 @@ const SelectionBar_ = () => {
 
   return (
     <div className="flex justify-center bgPrimary">
-      {selectionBarElements.map((selectionBarElement) => {
-        return <Dropdown_ selectionBarElement={selectionBarElement} />;
+      {selectionBarElements.map((selectionBarElement, index) => {
+        return (
+          <Dropdown_ selectionBarElement={selectionBarElement} key={index} />
+        );
       })}
     </div>
   );

@@ -22,48 +22,48 @@ const Dropdown_: React.FC<IDropdown_props> = ({ selectionBarElement }) => {
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
   return (
-    // <Dropdown
-    //   type="listbox"
-    //   classNames={{ trigger: "border-0" }}
-    //   disableAnimation={true}
-    // >
-    //   <DropdownTrigger>
-    //     <Button variant="bordered">{nameButton}</Button>
-    //   </DropdownTrigger>
-    //   <DropdownMenu aria-label="Static Actions">
-    //     {selectionBarElement.sections.map((section, index) => {
-    //       return (
-    //         <DropdownSection title={section.nameSection}>
-    //           {section.sectionElements.map((sectionElement, index) => {
-    //             return <DropdownItem>{sectionElement}</DropdownItem>;
-    //           })}
-    //         </DropdownSection>
-    //       );
-    //     })}
-    //   </DropdownMenu>
-    // </Dropdown>
     <div className="col">
       <div
         onMouseEnter={() => setShowMenu(true)}
         onMouseLeave={() => setShowMenu(false)}
         className="flex row p-2 text-white cursor-pointer items-center"
       >
-        <p>hola</p>
+        <p>{selectionBarElement.nameButton}</p>
         <FaCaretDown size={13} className="ml-1"></FaCaretDown>
       </div>
 
       {showMenu && (
         <div
-          className="bg-[#3e3] p-10 absolute"
+          className="bg-[#fff] p-5 absolute shadow-md"
           onMouseEnter={() => setShowMenu(true)}
           onMouseLeave={() => setShowMenu(false)}
         >
           <ul>
-            <li className="hover:text-[#fff] hover:underline decoration-3 cursor-pointer">
-              hola gente
-            </li>
-            <li>hola gente</li>
-            <li>hola gente</li>
+            {selectionBarElement.sections.map((section, index) => {
+              return (
+                <>
+                  <p
+                    className="hover:underline decoration-3 cursor-pointer"
+                    key={index}
+                  >
+                    {section.nameSection}
+                  </p>
+
+                  <ul className="ml-5">
+                    {section.sectionElements.map((element, index) => {
+                      return (
+                        <li
+                          className="hover:underline hover:text-black decoration-3 cursor-pointer text-gray-500 text-sm"
+                          key={index}
+                        >
+                          {element}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </>
+              );
+            })}
           </ul>
         </div>
       )}

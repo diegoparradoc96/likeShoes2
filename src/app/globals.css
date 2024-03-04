@@ -3,7 +3,8 @@
 @tailwind utilities;
 
 .bgPrimary {
-  background-color: #f31260;
+  /* background-color: #f31260; */
+  background-color: #E71731;
 }
 
 .bgSecondary {
