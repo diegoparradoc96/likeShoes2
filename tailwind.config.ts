@@ -16,6 +16,9 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontFamily: {},
+      spacing: {
+        "128": "32rem",
+      },
     },
   },
   darkMode: "class",
