@@ -16,14 +16,24 @@ interface NormalHeaderProps {
 
 const Header_: React.FC<NormalHeaderProps> = ({}) => {
   return (
-    <Navbar maxWidth="xl" position="sticky">
-      <NavbarBrand className="space-x-20">
+    <Navbar maxWidth="xl" position="sticky" className="bg-[#fff]">
+      <NavbarBrand className="grid grid-cols-6 space-x-20">
         {/* company name */}
-        <p className="font-bold text-inherit text-4xl">LikeShoes</p>
+        <div className="col-span-1">
+          <p className="font-bold text-inherit text-4xl">LikeShoes</p>
+        </div>
+
         {/* searcher */}
-        <Searcher_ />
+        <div className="col-span-4">
+          <Searcher_ />
+        </div>
         {/* buttons */}
-        <HeaderButton_ text="Contáctanos" icon={<IoMailOutline size={28} />} />
+        <div>
+          <HeaderButton_
+            text="Contáctanos"
+            icon={<IoMailOutline size={28} />}
+          />
+        </div>
       </NavbarBrand>
     </Navbar>
   );

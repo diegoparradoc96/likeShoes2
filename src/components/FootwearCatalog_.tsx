@@ -6,7 +6,7 @@ const FootwearCatalog_ = () => {
   const catalog = [0, 1, 2, 3, 4, 5];
 
   return (
-    <div className="grid grid-cols-4 gap-2 ml-2">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 ml-2">
       {catalog.map((shoe, index) => {
         return (
           <div className="col-span-1">

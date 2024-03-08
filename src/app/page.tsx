@@ -18,31 +18,33 @@ import {
 const Home: React.FC = () => {
   return (
     <div className="mb-5">
-      <section className="h-10">
+      <section className="h-10 w-full fixed z-10">
         <Header_ />
       </section>
 
-      <section className="mt-10">
+      <section className="mt-16 mb-56 w-full fixed z-10">
         <SelectionBar_ />
       </section>
 
-      <section className="px-16">
-        <CurrentSection_ />
-      </section>
+      <div className="pt-24 px-5 sm:px-5 md:px-5 lg:px-5 xl:px-40">
+        <section className="">
+          <CurrentSection_ />
+        </section>
 
-      <section className="px-16 py-4">
-        <BreadCrumbs_ />
-      </section>
+        <section className=" py-4">
+          <BreadCrumbs_ />
+        </section>
 
-      <section className="flex row px-16">
-        <div className="w-2/12 border-r-1">
-          <SideMenu_ />
-        </div>
+        <section className="flex row">
+          <div className="w-2/12 border-r-1">
+            <SideMenu_ />
+          </div>
 
-        <div className="w-10/12">
-          <FootwearCatalog_ />
-        </div>
-      </section>
+          <div className="w-10/12">
+            <FootwearCatalog_ />
+          </div>
+        </section>
+      </div>
     </div>
   );
 };
