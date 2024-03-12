@@ -1,6 +1,37 @@
+"use client";
+
 import React from "react";
 
-import { Image } from "@nextui-org/react";
+import {
+  Image,
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownItem,
+  Button,
+} from "@nextui-org/react";
+
+const SizeButton: React.FC = () => {
+  // w-[80px]
+  return (
+    <Dropdown className="min-w-[80px] p-1" placement="top">
+      <DropdownTrigger className="w-full">
+        <Button variant="bordered">Talla</Button>
+      </DropdownTrigger>
+      <DropdownMenu
+        aria-label="Action event example"
+        onAction={(key) => alert(key)}
+        className="text-center"
+        classNames={{ base: "", list: "" }}
+        itemClasses={{ base: "", wrapper: "" }}
+      >
+        <DropdownItem key="new">36</DropdownItem>
+        <DropdownItem key="copy">37</DropdownItem>
+        <DropdownItem key="edit">38</DropdownItem>
+      </DropdownMenu>
+    </Dropdown>
+  );
+};
 
 const ShoeCard_ = () => {
   return (
@@ -38,9 +69,13 @@ const ShoeCard_ = () => {
         <p className="-mt-1">colores (desarrollo)</p>
       </div>
 
-      <div className="grid grid-cols-2 auto-cols-max">
-        <p className="text-center text-xs">talla</p>
-        <p className="text-center text-xs">Agregar al carrito</p>
+      <div className="grid grid-cols-5 gap-2 auto-cols-max mt-5">
+        <div className="col-span-2">
+          <SizeButton />
+        </div>
+        <Button className="col-span-3 text-center text-xs bg-[#252525] text-white">
+          Agregar al carrito
+        </Button>
       </div>
     </div>
   );

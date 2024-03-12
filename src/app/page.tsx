@@ -26,7 +26,7 @@ const Home: React.FC = () => {
         <SelectionBar_ />
       </section>
 
-      <div className="pt-24 px-5 sm:px-5 md:px-5 lg:px-5 xl:px-40">
+      <div className="pt-24 px-5 sm:px-5 md:px-5 lg:px-5 xl:px-52">
         <section className="">
           <CurrentSection_ />
         </section>
