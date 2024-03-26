@@ -1,5 +1,5 @@
-import { axiosInstance } from "../axios/axios_instance";
 import { IUser, IResponse, IUserRegister } from "@/common/types";
+import { axiosInstance } from "../axios/axios_instance";
 
 class UserQueries {
   private base_url: string;

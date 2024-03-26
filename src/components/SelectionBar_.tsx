@@ -1,43 +1,45 @@
 "use client";
+import React, { useEffect } from "react";
 
-import React from "react";
-
-import { ISelectionBarElements } from "../common/types";
-
+/* queries */
+import { shoeQueries } from "../services/api_likeshoes";
 /* components */
 import { Dropdown_ } from "../components";
+/* redux hooks */
+import { useAppDispatch, useAppSelector } from "../redux/hooks";
+/* redux slices */
+import { setArrCurrentSection, setArrShoeSections } from "../redux/slices";
 
 const SelectionBar_ = () => {
-  const selectionBarElements: ISelectionBarElements[] = [
-    {
-      nameButton: "Mujeres",
-      sections: [
-        {
-          nameSection: "Tenis",
-          sectionElements: ["Cerrados", "Sin cordon"],
-        },
-        {
-          nameSection: "Botas",
-          sectionElements: [],
-        },
-      ],
-    },
-    {
-      nameButton: "Hombres",
-      sections: [
-        {
-          nameSection: "Tenis",
-          sectionElements: ["Cerrados", "Sin cordon"],
-        },
-      ],
-    },
-  ];
+  const dispatch = useAppDispatch();
+
+  const arrShoeSections = useAppSelector(
+    (store) => store.shoeSections.arrShoeSections
+  );
+
+  useEffect(() => {
+    loadSections();
+  }, []);
+
+  const loadSections = async () => {
+    try {
+      const sections = await shoeQueries.getShoeSections();
+      dispatch(setArrShoeSections(sections));
+      dispatch(setArrCurrentSection([sections[0].sectionName]));
+    } catch (error) {
+      alert("Error al cargar secciones");
+    }
+  };
 
   return (
     <div className="flex justify-center bgPrimary">
-      {selectionBarElements.map((selectionBarElement, index) => {
+      {arrShoeSections.map((shoeSection, index) => {
         return (
-          <Dropdown_ selectionBarElement={selectionBarElement} key={index} />
+          <Dropdown_
+            sectionName={shoeSection.sectionName}
+            shoeTypes={shoeSection.shoeTypes}
+            key={index}
+          />
         );
       })}
     </div>

@@ -1,34 +1,27 @@
 "use client";
 
 import React, { useState } from "react";
-import {
-  Dropdown,
-  DropdownTrigger,
-  DropdownMenu,
-  DropdownSection,
-  DropdownItem,
-  Button,
-} from "@nextui-org/react";
 import { FaCaretDown } from "react-icons/fa";
+import { IShoeSection } from "../common/types";
+/* redux hooks */
+import { useAppDispatch } from "../redux/hooks";
+/* redux slices */
+import { setArrCurrentSection } from "../redux/slices";
 
-import { ISelectionBarElements } from "../common/types";
+const Dropdown_: React.FC<IShoeSection> = ({ sectionName, shoeTypes }) => {
+  const dispatch = useAppDispatch();
 
-interface IDropdown_props {
-  selectionBarElement: ISelectionBarElements;
-}
-
-const Dropdown_: React.FC<IDropdown_props> = ({ selectionBarElement }) => {
-  const { nameButton, sections } = selectionBarElement;
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
   return (
     <div className="col">
       <div
+        onClick={() => dispatch(setArrCurrentSection([sectionName]))}
         onMouseEnter={() => setShowMenu(true)}
         onMouseLeave={() => setShowMenu(false)}
         className="flex row p-2 text-white cursor-pointer items-center"
       >
-        <p>{selectionBarElement.nameButton}</p>
+        <p>{sectionName}</p>
         <FaCaretDown size={13} className="ml-1"></FaCaretDown>
       </div>
 
@@ -39,29 +32,20 @@ const Dropdown_: React.FC<IDropdown_props> = ({ selectionBarElement }) => {
           onMouseLeave={() => setShowMenu(false)}
         >
           <ul>
-            {selectionBarElement.sections.map((section, index) => {
+            {shoeTypes.map((shoeType) => {
               return (
-                <>
+                <div key={shoeType.id}>
                   <p
+                    onClick={() =>
+                      dispatch(
+                        setArrCurrentSection([sectionName, shoeType.typeName])
+                      )
+                    }
                     className="hover:underline decoration-3 cursor-pointer"
-                    key={index}
                   >
-                    {section.nameSection}
+                    {shoeType.typeName}
                   </p>
-
-                  <ul className="ml-5">
-                    {section.sectionElements.map((element, index) => {
-                      return (
-                        <li
-                          className="hover:underline hover:text-black decoration-3 cursor-pointer text-gray-500 text-sm"
-                          key={index}
-                        >
-                          {element}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </>
+                </div>
               );
             })}
           </ul>
