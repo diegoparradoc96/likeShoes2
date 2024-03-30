@@ -6,17 +6,21 @@ import { IShoeSection } from "../common/types";
 /* redux hooks */
 import { useAppDispatch } from "../redux/hooks";
 /* redux slices */
-import { setArrCurrentSection } from "../redux/slices";
+import { setObjCurrentSection } from "../redux/slices";
 
-const Dropdown_: React.FC<IShoeSection> = ({ sectionName, shoeTypes }) => {
+const Dropdown_: React.FC<IShoeSection> = ({ id, sectionName, shoeTypes }) => {
   const dispatch = useAppDispatch();
 
   const [showMenu, setShowMenu] = useState<boolean>(false);
 
   return (
     <div className="col">
-      <div
-        onClick={() => dispatch(setArrCurrentSection([sectionName]))}
+      <div      
+        onClick={() => dispatch(setObjCurrentSection({
+          shoeSectionId: id,          
+          shoeTypeId: 0,
+          currentSection: [sectionName]
+        }))}
         onMouseEnter={() => setShowMenu(true)}
         onMouseLeave={() => setShowMenu(false)}
         className="flex row p-2 text-white cursor-pointer items-center"
@@ -37,8 +41,12 @@ const Dropdown_: React.FC<IShoeSection> = ({ sectionName, shoeTypes }) => {
                 <div key={shoeType.id}>
                   <p
                     onClick={() =>
-                      dispatch(
-                        setArrCurrentSection([sectionName, shoeType.typeName])
+                      dispatch(                        
+                        setObjCurrentSection({
+                          shoeSectionId: id,
+                          shoeTypeId: shoeType.id,
+                          currentSection: [sectionName, shoeType.typeName]
+                        })
                       )
                     }
                     className="hover:underline decoration-3 cursor-pointer"

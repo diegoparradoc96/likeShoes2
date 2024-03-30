@@ -1,23 +1,28 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { ObjCurrentSection } from "@/common/types";
 
 interface CurrentSection {
-  arrCurrentSection: string[];
+  objCurrentSection: ObjCurrentSection;
 }
 
 const initialState: CurrentSection = {
-  arrCurrentSection: [],
+  objCurrentSection: {
+    shoeSectionId: 1, // para que traiga mujeres por defecto
+    shoeTypeId: 0, // 0 traje todo
+    currentSection: [],
+  },
 };
 
 export const currentSectionSlice = createSlice({
   name: "currentSection",
   initialState,
   reducers: {
-    setArrCurrentSection: (state, action: PayloadAction<string[]>) => {
-      state.arrCurrentSection = action.payload;
+    setObjCurrentSection: (state, action: PayloadAction<ObjCurrentSection>) => {
+      state.objCurrentSection = action.payload;
     },
   },
 });
 
-export const { setArrCurrentSection } = currentSectionSlice.actions;
+export const { setObjCurrentSection } = currentSectionSlice.actions;
 
 export default currentSectionSlice.reducer;

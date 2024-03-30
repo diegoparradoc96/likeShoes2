@@ -2,6 +2,8 @@
 
 import React from "react";
 
+import { Shoe } from "../common/types";
+
 import {
   Image,
   Dropdown,
@@ -10,6 +12,10 @@ import {
   DropdownItem,
   Button,
 } from "@nextui-org/react";
+
+interface ShoeCardProps {
+  shoe: Shoe;
+}
 
 const SizeButton: React.FC = () => {
   // w-[80px]
@@ -33,7 +39,7 @@ const SizeButton: React.FC = () => {
   );
 };
 
-const ShoeCard_ = () => {
+const ShoeCard_: React.FC<ShoeCardProps> = ({ shoe }) => {
   return (
     <div
       className="
@@ -43,17 +49,17 @@ const ShoeCard_ = () => {
     >
       <div className="grid row-span-4 justify-items-center">
         <Image
-          src="https://calzatodocol.vteximg.com.br/arquivos/ids/216552-292-292/712100069_blanco-verde_02.jpg?v=638376158510500000.jpeg"
+          src={shoe.shoeImage}
           className="z-0"
         />
       </div>
 
       <div className="h-5">
-        <p className="font-bold">Fratini</p>
+        <p className="font-bold">{shoe.shoeName}</p>
       </div>
       <div className="h-10">
         <p className="text-gray-400 text-[14px]">
-          Mocasin de Mujer marca Frattini
+          {shoe.shoeDescription}
         </p>
       </div>
       <div className="h-3 mt-4">
@@ -61,7 +67,7 @@ const ShoeCard_ = () => {
       </div>
 
       <div className="h-5">
-        <p className="font-bold">$300.000</p>
+        <p className="font-bold">{shoe.shoePrice}</p>
       </div>
 
       <div className="mt-2">

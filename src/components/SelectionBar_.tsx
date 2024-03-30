@@ -8,7 +8,7 @@ import { Dropdown_ } from "../components";
 /* redux hooks */
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 /* redux slices */
-import { setArrCurrentSection, setArrShoeSections } from "../redux/slices";
+import { setObjCurrentSection, setArrShoeSections } from "../redux/slices";
 
 const SelectionBar_ = () => {
   const dispatch = useAppDispatch();
@@ -21,11 +21,16 @@ const SelectionBar_ = () => {
     loadSections();
   }, []);
 
+  
   const loadSections = async () => {
     try {
       const sections = await shoeQueries.getShoeSections();
       dispatch(setArrShoeSections(sections));
-      dispatch(setArrCurrentSection([sections[0].sectionName]));
+      dispatch(setObjCurrentSection({
+        shoeSectionId: sections[0].id || 1,
+        shoeTypeId: 1,
+        currentSection: [sections[0].sectionName]
+      }));
     } catch (error) {
       alert("Error al cargar secciones");
     }
@@ -36,6 +41,7 @@ const SelectionBar_ = () => {
       {arrShoeSections.map((shoeSection, index) => {
         return (
           <Dropdown_
+            id={shoeSection.id}
             sectionName={shoeSection.sectionName}
             shoeTypes={shoeSection.shoeTypes}
             key={index}

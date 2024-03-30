@@ -8,6 +8,8 @@ import { Navbar, NavbarBrand } from "@nextui-org/react";
 import { Searcher_, HeaderButton_ } from ".";
 /* react icons */
 import { IoMailOutline } from "react-icons/io5";
+import { FaTruckMoving } from "react-icons/fa6";
+import { IoIosCart } from "react-icons/io";
 
 /* prop types */
 interface NormalHeaderProps {
@@ -28,10 +30,20 @@ const Header_: React.FC<NormalHeaderProps> = ({}) => {
           <Searcher_ />
         </div>
         {/* buttons */}
-        <div>
+        <div className="">
           <HeaderButton_
             text="Contáctanos"
-            icon={<IoMailOutline size={28} />}
+            icon={<IoMailOutline size={26} color="black" />}
+          />
+
+          <HeaderButton_
+            text="Mi pedido"
+            icon={<FaTruckMoving size={26} color="black" />}
+          />
+
+          <HeaderButton_
+            text="Carrito"
+            icon={<IoIosCart size={26} color="black" />}
           />
         </div>
       </NavbarBrand>

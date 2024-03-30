@@ -14,8 +14,7 @@ interface HeaderButtonProps_ {
 
 const HeaderButton_: React.FC<HeaderButtonProps_> = ({ text, icon }) => {
   return (
-    <Button variant="light" className="flex-col p-7" size="sm">
-      {icon}
+    <Button variant="outlined" startContent={icon}>
       {text}
     </Button>
   );

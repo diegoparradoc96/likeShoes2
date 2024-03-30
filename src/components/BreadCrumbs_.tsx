@@ -5,34 +5,47 @@ import { Breadcrumbs, BreadcrumbItem } from "@nextui-org/react";
 /* redux hooks */
 import { useAppDispatch, useAppSelector } from "../redux/hooks";
 /* redux slices */
-import { setArrCurrentSection, setArrShoeSections } from "../redux/slices";
+import { setObjCurrentSection, setArrShoeSections } from "../redux/slices";
 /* types */
 import { IShoeType } from "../common/types";
 
 const BreadCrumbs_ = () => {
   const dispatch = useAppDispatch();
 
-  const arrCurrentSection = useAppSelector(
-    (store) => store.currentSection.arrCurrentSection
+  const objCurrentSection = useAppSelector(
+    (store) => store.currentSection.objCurrentSection
   );
 
-  const toggleShoeType = (sectionName: string) => {
-    console.log(arrCurrentSection.length);
-    if (arrCurrentSection.length == 1) {
-      dispatch(setArrCurrentSection([sectionName]));
+  const toggleShoeType = (sectionName: string, index: number) => {
+    console.log("sectionName", sectionName);
+    console.log(objCurrentSection.currentSection.length);
+    if (index == 0) {
+      dispatch(
+        setObjCurrentSection({
+          shoeSectionId: objCurrentSection.shoeSectionId,
+          shoeTypeId: 0,
+          currentSection: [sectionName],
+        })
+      );
     } else {
-      const arrayModificado = arrCurrentSection;
+      const arrayModificado = objCurrentSection.currentSection.slice();
       arrayModificado[1] = sectionName;
-      console.log(arrayModificado);
-      dispatch(setArrCurrentSection(arrayModificado));
+
+      dispatch(
+        setObjCurrentSection({
+          shoeSectionId: objCurrentSection.shoeSectionId,
+          shoeTypeId: objCurrentSection.shoeTypeId,
+          currentSection: arrayModificado,
+        })
+      );
     }
   };
 
   return (
     <Breadcrumbs size="lg">
-      {arrCurrentSection.map((currentSection, index) => (
+      {objCurrentSection.currentSection.map((currentSection, index) => (
         <BreadcrumbItem
-          onClick={() => toggleShoeType(currentSection)}
+          onClick={() => toggleShoeType(currentSection, index)}
           className=""
           key={index}
         >

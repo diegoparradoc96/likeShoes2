@@ -17,6 +17,18 @@ class ShoeQueries {
       throw error;
     }
   }
+
+  async getShoeCatalog(shoeSectionId: number, shoeTypeId: number) {
+    try {
+      const response = await axiosInstance.get(
+        `${this.base_url}shoe-catalog?shoeSectionId=${shoeSectionId}&shoeTypeId=${shoeTypeId}`
+      );
+
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
 
 const shoeQueries = new ShoeQueries();

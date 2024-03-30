@@ -4,7 +4,6 @@ import React from "react";
 import Link from "next/link";
 /* nextui */
 import { Button } from "@nextui-org/react";
-
 /* components */
 import {
   Header_,
