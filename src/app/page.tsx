@@ -10,9 +10,9 @@ import {
   SelectionBar_,
   CurrentSection_,
   BreadCrumbs_,
-  SideMenu_,
-  FootwearCatalog_,
 } from "../components";
+/* containers */
+import { FootwearCatalog_, SideMenu_ } from "../containers";
 
 const Home: React.FC = () => {
   return (
@@ -39,7 +39,7 @@ const Home: React.FC = () => {
             <SideMenu_ />
           </div>
 
-          <div className="w-10/12">
+          <div className="grid w-10/12">
             <FootwearCatalog_ />
           </div>
         </section>

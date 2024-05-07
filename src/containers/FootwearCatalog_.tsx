@@ -12,7 +12,7 @@ import { setObjCurrentSection, setArrShoeSections } from "../redux/slices";
 /* queries */
 import { shoeQueries } from "../services/api_likeshoes";
 
-const FootwearCatalog_ = () => {  
+const FootwearCatalog_ = () => {
   const [catalog, setCatalog] = useState([]);
 
   const objCurrentSection = useAppSelector(
@@ -29,7 +29,7 @@ const FootwearCatalog_ = () => {
         objCurrentSection.shoeSectionId,
         objCurrentSection.shoeTypeId
       );
-      console.log("🐊 ~ shoeCatalog:", shoeCatalog)
+      console.log("🐊 ~ shoeCatalog:", shoeCatalog);
 
       setCatalog(shoeCatalog);
     } catch (error) {
